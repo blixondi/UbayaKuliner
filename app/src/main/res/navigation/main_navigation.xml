@@ -11,19 +11,49 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/actionHomeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/itemHome" />
         <action
             android:id="@+id/actionRegisterFragment"
             app:destination="@id/registerFragment" />
     </fragment>
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/itemHome"
         android:name="com.shem.ubayafood.view.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/actionProfileFragment"
+            app:destination="@id/itemProfile" />
+        <action
+            android:id="@+id/actionHistoryFragment"
+            app:destination="@id/itemHistory" />
+        <action
+            android:id="@+id/actionFoodDetailFragment"
+            app:destination="@id/foodDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.shem.ubayafood.view.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/itemProfile"
+        android:name="com.shem.ubayafood.view.ProfileFragment"
+        android:label="Your Profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/itemHistory"
+        android:name="com.shem.ubayafood.view.HistoryFragment"
+        android:label="Order History"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/foodDetailFragment"
+        android:name="com.shem.ubayafood.view.FoodDetailFragment"
+        android:label="fragment_food_detail"
+        tools:layout="@layout/fragment_food_detail" />
+    <fragment
+        android:id="@+id/topUpFragment"
+        android:name="com.shem.ubayafood.view.TopUpFragment"
+        android:label="fragment_top_up"
+        tools:layout="@layout/fragment_top_up" />
 </navigation>

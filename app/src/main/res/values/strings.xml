@@ -2,4 +2,9 @@
     <string name="app_name">UbayaFood</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nasi_goreng">Nasi Goreng</string>
+    <string name="rp_20000">Rp. 20000</string>
+    <string name="lihat_detail">Lihat Detail</string>
+    <string name="jumlah_pesanan_3_porsi">Jumlah Pesanan: 3 porsi</string>
+    <string name="rp_60000">Rp. 60000</string>
 </resources>

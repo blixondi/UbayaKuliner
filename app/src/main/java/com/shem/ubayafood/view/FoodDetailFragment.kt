@@ -7,8 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.shem.ubayafood.R
 
-
-class HomeFragment : Fragment() {
+class FoodDetailFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -16,7 +15,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return inflater.inflate(R.layout.fragment_food_detail, container, false)
     }
 
 
