@@ -51,4 +51,9 @@
         android:name="com.shem.ubayafood.view.FoodDetailFragment"
         android:label="fragment_food_detail"
         tools:layout="@layout/fragment_food_detail" />
+    <fragment
+        android:id="@+id/topUpFragment"
+        android:name="com.shem.ubayafood.view.TopUpFragment"
+        android:label="fragment_top_up"
+        tools:layout="@layout/fragment_top_up" />
 </navigation>
