@@ -32,6 +32,10 @@
             android:layout_marginEnd="32dp"
             android:hint="New Username"
             app:hintAnimationEnabled="true"
+            app:boxStrokeColor="#FF9800"
+            app:endIconTint="#FF9800"
+            app:hintTextColor="#FF9800"
+            app:startIconTint="#FF9800"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2">
@@ -76,7 +80,11 @@
             app:hintAnimationEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3">
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:boxStrokeColor="#FF9800"
+            app:endIconTint="#FF9800"
+            app:hintTextColor="#FF9800"
+            app:startIconTint="#FF9800">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtNewFirstName"
@@ -107,7 +115,11 @@
             app:hintAnimationEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4">
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:boxStrokeColor="#FF9800"
+            app:endIconTint="#FF9800"
+            app:hintTextColor="#FF9800"
+            app:startIconTint="#FF9800">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtNewLastName"
@@ -137,7 +149,11 @@
             android:hint="New Password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5">
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            app:boxStrokeColor="#FF9800"
+            app:endIconTint="#FF9800"
+            app:hintTextColor="#FF9800"
+            app:startIconTint="#FF9800">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtNewPassword"
@@ -168,7 +184,11 @@
             android:hint="Confirm Password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6">
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:boxStrokeColor="#FF9800"
+            app:endIconTint="#FF9800"
+            app:hintTextColor="#FF9800"
+            app:startIconTint="#FF9800">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtConfirmNewPassword"
@@ -182,6 +202,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:backgroundTint="#FF9800"
             android:text="Create Account"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"

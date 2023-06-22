@@ -134,6 +134,8 @@
             android:layout_marginEnd="32dp"
             android:hint="Alamat pengiriman"
             app:hintAnimationEnabled="true"
+            app:hintEnabled="true"
+            app:hintTextColor="#FF9800"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView10">
@@ -164,6 +166,7 @@
             android:hint="Nama pembeli"
             app:hintAnimationEnabled="true"
             app:hintEnabled="true"
+            app:hintTextColor="#FF9800"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11">

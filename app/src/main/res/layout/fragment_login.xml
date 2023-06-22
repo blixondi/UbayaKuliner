@@ -31,6 +31,9 @@
             android:layout_marginTop="100dp"
             android:layout_marginEnd="30dp"
             android:hint="Username"
+            app:boxStrokeColor="#FF5722"
+            app:endIconTint="#FF5722"
+            app:hintTextColor="#FF5722"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblTitle">
@@ -50,10 +53,14 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="30dp"
             android:hint="Password"
+            app:boxStrokeColor="#FF5722"
+            app:endIconTint="#FF5722"
             app:hintAnimationEnabled="true"
+            app:hintTextColor="#FF5722"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+            app:startIconTint="#FF5722">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtPassword"
