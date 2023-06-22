@@ -19,13 +19,14 @@ data class Session(
 //model for Live Data
 data class User(
     @SerializedName("id")
-    val user_id:Int?,
-    val username: String?,
+    val user_id:Int,
+    val username: String,
     @SerializedName("first_name")
-    val firstName: String?,
+    val firstName: String,
     @SerializedName("last_name")
-    val lastName: String?,
-    val password: String?
+    val lastName: String,
+    val password: String,
+    val saldo: Int
 )
 
 
