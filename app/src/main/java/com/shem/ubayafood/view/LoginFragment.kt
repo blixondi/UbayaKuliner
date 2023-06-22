@@ -12,10 +12,7 @@ import com.shem.ubayafood.viewmodel.UserViewModel
 
 class LoginFragment : Fragment() {
     private lateinit var viewModel: UserViewModel
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
