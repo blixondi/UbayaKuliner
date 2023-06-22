@@ -24,11 +24,11 @@
             android:id="@+id/txtFoodNameDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:singleLine="false"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgDetailFood"
             tools:text="@string/nasi_goreng" />
@@ -37,10 +37,10 @@
             android:id="@+id/txtFoodDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:singleLine="false"
             android:text="Nasi goreng dengan bumbu khas"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtFoodNameDetail" />
 
