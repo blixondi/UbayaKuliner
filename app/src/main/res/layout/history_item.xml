@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:backgroundTint="#FF9800">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
@@ -59,29 +60,27 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtFoodNameHistory" />
 
             <TextView
-                android:id="@+id/txtJumlahPesananHistory"
+                android:id="@+id/txtTanggalPesananHistory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
-                android:text="@string/jumlah_pesanan_3_porsi"
+                android:text="2023-05-05 10:29:30"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 app:layout_constraintStart_toEndOf="@+id/imgFoodHistory"
                 app:layout_constraintTop_toBottomOf="@+id/txtPriceHistory" />
 
-            <TextView
-                android:id="@+id/txtTotalHistory"
+            <Button
+                android:id="@+id/btnDetailHistory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="16dp"
-                android:text="@string/rp_60000"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="#4CAF50"
-                android:textSize="18sp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="#FF9800"
+                android:text="@string/lihat_detail"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:ignore="TextContrastCheck" />
+                app:layout_constraintEnd_toEndOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
