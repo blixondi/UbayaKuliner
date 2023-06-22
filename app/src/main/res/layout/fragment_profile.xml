@@ -192,7 +192,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnUpdateProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -215,7 +215,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/btnTO"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginStart="116dp"
@@ -224,17 +224,18 @@
             android:text="Top Up"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView17"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            app:layout_constraintTop_toBottomOf="@+id/textView8"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/btnLogout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Logout"
             app:icon="@drawable/baseline_exit_to_app_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button" />
+            app:layout_constraintTop_toBottomOf="@+id/btnUpdateProfile" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

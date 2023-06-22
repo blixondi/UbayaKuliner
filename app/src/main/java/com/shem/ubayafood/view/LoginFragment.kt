@@ -25,7 +25,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val txtUsername = view.findViewById<TextInputEditText>(R.id.txtUsername)
-        val txtPassword = view.findViewById<TextInputEditText>(R.id.txtPassword)
+        val txtPassword = view.findViewById<TextInputEditText>(R.id.txtTopUpPassword)
         val btnLogin = view.findViewById<Button>(R.id.btnLogin)
         val btnRegister = view.findViewById<Button>(R.id.btnRegister)
 
