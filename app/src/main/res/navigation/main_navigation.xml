@@ -27,6 +27,9 @@
         <action
             android:id="@+id/actionHistoryFragment"
             app:destination="@id/itemHistory" />
+        <action
+            android:id="@+id/actionFoodDetailFragment"
+            app:destination="@id/foodDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -43,4 +46,9 @@
         android:name="com.shem.ubayafood.view.HistoryFragment"
         android:label="Order History"
         tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/foodDetailFragment"
+        android:name="com.shem.ubayafood.view.FoodDetailFragment"
+        android:label="fragment_food_detail"
+        tools:layout="@layout/fragment_food_detail" />
 </navigation>

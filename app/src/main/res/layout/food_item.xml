@@ -48,7 +48,7 @@
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/txtPrice"
+                android:id="@+id/txtFoodPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -67,7 +67,7 @@
                 android:layout_marginEnd="24dp"
                 android:text="@string/lihat_detail"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtPrice" />
+                app:layout_constraintTop_toBottomOf="@+id/txtFoodPrice" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
