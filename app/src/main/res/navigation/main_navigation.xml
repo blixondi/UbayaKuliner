@@ -40,12 +40,20 @@
         android:id="@+id/itemProfile"
         android:name="com.shem.ubayafood.view.ProfileFragment"
         android:label="Your Profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/actionTopUpFragment"
+            app:destination="@id/topUpFragment" />
+    </fragment>
     <fragment
         android:id="@+id/itemHistory"
         android:name="com.shem.ubayafood.view.HistoryFragment"
         android:label="Order History"
-        tools:layout="@layout/fragment_history" />
+        tools:layout="@layout/fragment_history" >
+        <action
+            android:id="@+id/action_itemHistory_to_historyDetailFragment"
+            app:destination="@id/historyDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/foodDetailFragment"
         android:name="com.shem.ubayafood.view.FoodDetailFragment"
@@ -56,4 +64,9 @@
         android:name="com.shem.ubayafood.view.TopUpFragment"
         android:label="fragment_top_up"
         tools:layout="@layout/fragment_top_up" />
+    <fragment
+        android:id="@+id/historyDetailFragment"
+        android:name="com.shem.ubayafood.view.HistoryDetailFragment"
+        android:label="fragment_history_detail"
+        tools:layout="@layout/fragment_history_detail" />
 </navigation>
