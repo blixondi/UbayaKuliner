@@ -58,7 +58,11 @@
         android:id="@+id/foodDetailFragment"
         android:name="com.shem.ubayafood.view.FoodDetailFragment"
         android:label="fragment_food_detail"
-        tools:layout="@layout/fragment_food_detail" />
+        tools:layout="@layout/fragment_food_detail" >
+        <argument
+            android:name="food_id"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/topUpFragment"
         android:name="com.shem.ubayafood.view.TopUpFragment"

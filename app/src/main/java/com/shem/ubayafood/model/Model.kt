@@ -29,4 +29,16 @@ data class User(
     val saldo: Int
 )
 
+data class Food(
+    @SerializedName("id")
+    val food_id:Int,
+    @SerializedName("name")
+    val food_name:String,
+    val description:String,
+    @SerializedName("price")
+    val food_price:Int,
+    @SerializedName("img")
+    val food_img:String
+)
+
 
