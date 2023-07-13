@@ -36,7 +36,7 @@ data class Food(
     val food_name:String,
     val description:String,
     @SerializedName("price")
-    val food_price:Int,
+    val food_price:String,
     @SerializedName("img")
     val food_img:String
 )

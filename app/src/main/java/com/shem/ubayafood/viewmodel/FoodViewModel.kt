@@ -22,7 +22,7 @@ class FoodViewModel(application: Application): AndroidViewModel(application) {
 
     fun getFood(){
         loadingLD.value = true
-        foodErrorLD.value = true
+        foodErrorLD.value = false
 
         queue = Volley.newRequestQueue(getApplication())
         val url = "http://kenhosting.ddns.net/uas-anmp/food/get_food.php"
@@ -38,12 +38,17 @@ class FoodViewModel(application: Application): AndroidViewModel(application) {
             },
             {
                 Log.d("showvoley", it.toString())
-                foodErrorLD.value=true
+                foodErrorLD.value=false
                 loadingLD.value=false
             }
         )
         stringRequest.tag=TAG
         queue?.add(stringRequest)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        queue?.cancelAll(TAG)
     }
 
 }

@@ -26,4 +26,10 @@ class FoodListAdapter(val foodList:ArrayList<Food>): RecyclerView.Adapter<FoodLi
         holder.view.food = foodList[position]
     }
 
+    fun updateFoodList(newStudentList: ArrayList<Food>) {
+        foodList.clear()
+        foodList.addAll(newStudentList)
+        notifyDataSetChanged()
+    }
+
 }
