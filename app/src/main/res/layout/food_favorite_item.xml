@@ -28,11 +28,11 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
                 android:text="TextView"
-                app:layout_constraintStart_toEndOf="@+id/imgFoodFavorite"
+                app:layout_constraintStart_toEndOf="@+id/imgFood"
                 app:layout_constraintTop_toBottomOf="@+id/txtFoodNameFavorite" />
 
             <ImageView
-                android:id="@+id/imgFoodFavorite"
+                android:id="@+id/imgFood"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
@@ -50,7 +50,7 @@
                 android:text="@string/nasi_goreng"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textSize="20sp"
-                app:layout_constraintStart_toEndOf="@+id/imgFoodFavorite"
+                app:layout_constraintStart_toEndOf="@+id/imgFood"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
