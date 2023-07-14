@@ -40,5 +40,3 @@ data class Food(
     @SerializedName("img")
     val food_img:String
 )
-
-
