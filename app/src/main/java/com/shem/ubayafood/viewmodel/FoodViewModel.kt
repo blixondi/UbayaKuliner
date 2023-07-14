@@ -14,6 +14,7 @@ import com.shem.ubayafood.model.Food
 
 class FoodViewModel(application: Application): AndroidViewModel(application) {
     val foodLD = MutableLiveData<ArrayList<Food>>()
+    val foodDetailLD = MutableLiveData<Food>()
     val foodErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
 
@@ -40,6 +41,25 @@ class FoodViewModel(application: Application): AndroidViewModel(application) {
                 Log.d("showvoley", it.toString())
                 foodErrorLD.value=false
                 loadingLD.value=false
+            }
+        )
+        stringRequest.tag=TAG
+        queue?.add(stringRequest)
+    }
+
+    fun getFoodDetail(food_id: String){
+        queue = Volley.newRequestQueue(getApplication())
+        val url = "http://kenhosting.ddns.net/uas-anmp/food/get_food.php?id=$food_id"
+
+        val stringRequest=StringRequest(
+            Request.Method.GET, url,{
+                val result= Gson().fromJson<Food>(it, Food::class.java)
+                foodDetailLD.value=result
+
+                Log.d("showvoley", result.toString())
+            },
+            {
+                Log.d("showvoley", it.toString())
             }
         )
         stringRequest.tag=TAG
