@@ -72,5 +72,9 @@
         android:id="@+id/historyDetailFragment"
         android:name="com.shem.ubayafood.view.HistoryDetailFragment"
         android:label="fragment_history_detail"
-        tools:layout="@layout/fragment_history_detail" />
+        tools:layout="@layout/fragment_history_detail" >
+        <argument
+            android:name="order_id"
+            app:argType="string" />
+    </fragment>
 </navigation>
