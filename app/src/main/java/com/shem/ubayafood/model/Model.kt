@@ -40,3 +40,16 @@ data class Food(
     @SerializedName("img")
     val food_img:String
 )
+
+data class Order(
+    val order_id:Int,
+    @SerializedName("name")
+    val food_name:String,
+    @SerializedName("price")
+    val food_price: String,
+    val quantity: String,
+    val time: String,
+    val behalf:String,
+    val address:String,
+    val order_total:String
+)
