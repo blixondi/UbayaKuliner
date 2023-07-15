@@ -9,3 +9,7 @@ interface FoodItemLayoutInterface{
 interface FoodDetailLayoutInterface{
 
 }
+
+interface OrderItemLayoutInterface{
+    fun onButtonDetailClick(v: View)
+}

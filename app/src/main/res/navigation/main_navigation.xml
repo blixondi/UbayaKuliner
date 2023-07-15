@@ -34,7 +34,7 @@
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.shem.ubayafood.view.RegisterFragment"
-        android:label="fragment_register"
+        android:label="Register"
         tools:layout="@layout/fragment_register" />
     <fragment
         android:id="@+id/itemProfile"
@@ -57,8 +57,8 @@
     <fragment
         android:id="@+id/foodDetailFragment"
         android:name="com.shem.ubayafood.view.FoodDetailFragment"
-        android:label="fragment_food_detail"
-        tools:layout="@layout/fragment_food_detail" >
+        android:label="Food Detail"
+        tools:layout="@layout/fragment_food_detail">
         <argument
             android:name="food_id"
             app:argType="string" />
@@ -66,11 +66,15 @@
     <fragment
         android:id="@+id/topUpFragment"
         android:name="com.shem.ubayafood.view.TopUpFragment"
-        android:label="fragment_top_up"
+        android:label="Top Up"
         tools:layout="@layout/fragment_top_up" />
     <fragment
         android:id="@+id/historyDetailFragment"
         android:name="com.shem.ubayafood.view.HistoryDetailFragment"
-        android:label="fragment_history_detail"
-        tools:layout="@layout/fragment_history_detail" />
+        android:label="Order History Detail"
+        tools:layout="@layout/fragment_history_detail">
+        <argument
+            android:name="order_id"
+            app:argType="string" />
+    </fragment>
 </navigation>

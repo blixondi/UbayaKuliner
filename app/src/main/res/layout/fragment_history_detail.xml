@@ -16,14 +16,26 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
-            android:text="Harga per porsi: Rp. 20000"
+            android:text="Harga per porsi: Rp."
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtMenuHistory" />
 
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="140dp"
+            android:text="20000"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtMenuHistory" />
+
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imgOrderDetail"
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
@@ -42,69 +54,143 @@
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/imgOrderDetail" />
+
+        <TextView
+            android:id="@+id/lblJumlahOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Jumlah Pesanan:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+        <TextView
+            android:id="@+id/lblJumlahOrder2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="Porsi"
+            app:layout_constraintStart_toEndOf="@+id/txtJumlahOrder"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
         <TextView
             android:id="@+id/txtJumlahOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="3dp"
             android:layout_marginTop="16dp"
-            android:text="@string/jumlah_pesanan_3_porsi"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="3"
+            app:layout_constraintStart_toEndOf="@+id/lblJumlahOrder"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+        <TextView
+            android:id="@+id/lblTanggalPesan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:text="Tanggal Pesan: "
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblJumlahOrder" />
 
         <TextView
             android:id="@+id/txtTanggalPesan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:text="2023-05-01 22:22:10"
+            app:layout_constraintStart_toEndOf="@+id/lblTanggalPesan"
+            app:layout_constraintTop_toBottomOf="@+id/lblJumlahOrder" />
+
+        <TextView
+            android:id="@+id/lblNamaPelanggan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
-            android:text="Tanggal Pesan: 2023-05-01 22:22:10"
+            android:text="Nama Pelanggan: "
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtJumlahOrder" />
+            app:layout_constraintTop_toBottomOf="@+id/lblTanggalPesan" />
 
         <TextView
             android:id="@+id/txtNamaPelanggan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Ken"
+            app:layout_constraintStart_toEndOf="@+id/lblNamaPelanggan"
+            app:layout_constraintTop_toBottomOf="@+id/lblTanggalPesan" />
+
+        <TextView
+            android:id="@+id/lblAlamatPesan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
-            android:text="Nama Pelanggan: Ken"
+            android:text="Alamat Pemesanan: "
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTanggalPesan" />
+            app:layout_constraintTop_toBottomOf="@+id/lblNamaPelanggan" />
 
         <TextView
             android:id="@+id/txtAlamatPesan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="170dp"
             android:layout_marginTop="8dp"
-            android:text="Alamat Pemesanan: Jalan Tenggilis No. 10"
+            android:text="Jalan Tenggilis No. 10"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtNamaPelanggan" />
+            app:layout_constraintTop_toBottomOf="@+id/lblNamaPelanggan" />
+
+        <TextView
+            android:id="@+id/lblTotalHarga"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:text="Total Harga: Rp. "
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="25sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblAlamatPesan" />
 
         <TextView
             android:id="@+id/txtTotalHarga"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="Total Harga: Rp. 60000"
+            android:text="60000"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="25sp"
+            app:layout_constraintStart_toEndOf="@+id/lblTotalHarga"
+            app:layout_constraintTop_toBottomOf="@+id/lblAlamatPesan" />
+
+        <TextView
+            android:id="@+id/lblIdOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Order ID:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.435"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtAlamatPesan" />
+            app:layout_constraintTop_toBottomOf="@+id/imgOrderDetail" />
 
         <TextView
             android:id="@+id/txtIdOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Order ID: 1"
+            android:text="1"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/lblIdOrder"
+            app:layout_constraintTop_toBottomOf="@+id/imgOrderDetail" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
