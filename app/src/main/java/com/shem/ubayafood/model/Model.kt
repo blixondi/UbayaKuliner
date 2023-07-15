@@ -42,7 +42,7 @@ data class Food(
 )
 
 data class Order(
-    val order_id:Int,
+    val order_id:String,
     @SerializedName("name")
     val food_name:String,
     @SerializedName("price")
