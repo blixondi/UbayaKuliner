@@ -31,9 +31,9 @@ class FoodListAdapter(val foodList:ArrayList<Food>):
         holder.view.listener = this
     }
 
-    fun updateFoodList(newStudentList: ArrayList<Food>) {
+    fun updateFoodList(newFoodList: ArrayList<Food>) {
         foodList.clear()
-        foodList.addAll(newStudentList)
+        foodList.addAll(newFoodList)
         notifyDataSetChanged()
     }
 

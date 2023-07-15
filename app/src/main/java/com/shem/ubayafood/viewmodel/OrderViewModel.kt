@@ -21,7 +21,7 @@ class OrderViewModel(application: Application):AndroidViewModel(application) {
     val TAG = "TAG"
     private var queue:RequestQueue? = null
 
-    fun getFood(){
+    fun getHistory(){
         loadingLD.value = true
         orderErrorLD.value = false
 
@@ -47,7 +47,7 @@ class OrderViewModel(application: Application):AndroidViewModel(application) {
         queue?.add(stringRequest)
     }
 
-    fun getFoodDetail(order_id: String){
+    fun getHistoryDetail(order_id: String){
         queue = Volley.newRequestQueue(getApplication())
         val url = "http://kenhosting.ddns.net/uas-anmp/order/get_order.php?id=$order_id"
 

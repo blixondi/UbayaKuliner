@@ -5,12 +5,69 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.shem.ubayafood.R
+import com.shem.ubayafood.viewmodel.OrderViewModel
 
 
 class HistoryFragment : Fragment() {
 
+    private lateinit var viewModel: OrderViewModel
+    private var historyListAdapter = HistoryListAdapter(arrayListOf())
 
+    fun observeViewModel(){
+        viewModel.orderLD.observe(viewLifecycleOwner, Observer {
+            historyListAdapter.updateOrderList(it)
+        })
+
+        viewModel.orderErrorLD.observe(viewLifecycleOwner, Observer{
+            val txtErrorHistory = view?.findViewById<TextView>(R.id.txtErrorHistory)
+            if(it == true){
+                txtErrorHistory?.visibility = View.VISIBLE
+            } else{
+                txtErrorHistory?.visibility = View.GONE
+            }
+        })
+
+        viewModel.loadingLD.observe(viewLifecycleOwner, Observer{
+            val recViewHistory = view?.findViewById<RecyclerView>(R.id.recViewHistory)
+            val progressLoadHistory = view?.findViewById<ProgressBar>(R.id.progressLoadHistory)
+            if(it == true){
+                recViewHistory?.visibility = View.GONE
+                progressLoadHistory?.visibility = View.VISIBLE
+            } else {
+                recViewHistory?.visibility = View.VISIBLE
+                progressLoadHistory?.visibility = View.GONE
+            }
+        })
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
+        viewModel.getHistory()
+        val recViewHistory = view.findViewById<RecyclerView>(R.id.recViewHistory)
+        recViewHistory.layoutManager = LinearLayoutManager(context)
+        recViewHistory.adapter = historyListAdapter
+
+        val refreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.refreshLayoutHistory)
+        val progressLoadHistory = view.findViewById<ProgressBar>(R.id.progressLoadHistory)
+        val txtErrorHistory = view.findViewById<TextView>(R.id.txtErrorHistory)
+        refreshLayout.setOnRefreshListener {
+            recViewHistory.visibility = View.GONE
+            txtErrorHistory.visibility = View.GONE
+            progressLoadHistory.visibility = View.VISIBLE
+            viewModel.getHistory()
+            refreshLayout.isRefreshing = false
+        }
+        observeViewModel()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -19,6 +76,5 @@ class HistoryFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_history, container, false)
     }
-
 
 }
