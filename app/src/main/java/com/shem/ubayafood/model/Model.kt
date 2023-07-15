@@ -47,6 +47,8 @@ data class Order(
     val food_name:String,
     @SerializedName("price")
     val food_price: String,
+    @SerializedName("img")
+    val food_img:String,
     val quantity: String,
     val time: String,
     val behalf:String,
