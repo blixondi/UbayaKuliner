@@ -10,6 +10,8 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.shem.ubayafood.model.User
+import org.json.JSONArray
+import org.json.JSONObject
 
 class UserViewModel(Application: Application): AndroidViewModel(Application) {
     val userLD = MutableLiveData<User>()
@@ -48,9 +50,9 @@ class UserViewModel(Application: Application): AndroidViewModel(Application) {
         val stringRequest = object : StringRequest(
             Request.Method.POST, url,
             {
-                val result = Gson().fromJson<User>(it, User::class.java)
-                userLD.value = result
-                Log.d("showvoley", result.toString())
+                Log.d("showvoley", it.toString())
+                val jsonObject = JSONObject(it)
+                statusLD.value = jsonObject.getString("status")
             },
             {
                 Log.d("showvoley", it.toString())
