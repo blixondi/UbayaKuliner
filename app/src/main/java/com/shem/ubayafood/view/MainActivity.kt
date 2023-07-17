@@ -2,6 +2,7 @@ package com.shem.ubayafood.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -29,11 +30,32 @@ class MainActivity : AppCompatActivity() {
         val navView = findViewById<NavigationView>(R.id.navView)
         NavigationUI.setupWithNavController(navView, navController)
 
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return NavigationUI.navigateUp(navController, drawerLayout)
-                || super.onSupportNavigateUp()
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.hostFragment) as NavHostFragment
+        navController = (navHostFragment).navController
+//        Log.e("curr", navController.currentDestination?.label.toString())
+        return when (navController.currentDestination?.label.toString()) {
+            "Home" -> {
+                if (drawerLayout.isOpen) drawerLayout.close()
+                else drawerLayout.open()
+                super.onSupportNavigateUp()
+            }
+            "History" -> {
+                if (drawerLayout.isOpen) drawerLayout.close()
+                else drawerLayout.open()
+                super.onSupportNavigateUp()
+            }
+            "Profile" -> {
+                if (drawerLayout.isOpen) drawerLayout.close()
+                else drawerLayout.open()
+                super.onSupportNavigateUp()
+            }
+            else -> NavigationUI.navigateUp(navController, drawerLayout)
+        }
     }
 
 }

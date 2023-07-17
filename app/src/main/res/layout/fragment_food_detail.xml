@@ -26,14 +26,13 @@
                     android:id="@+id/imgDetailFood"
                     android:layout_width="0dp"
                     android:layout_height="200dp"
+                    android:imageUrl="@{food.food_img}"
+                    android:progressBar="@{progressBarFoodDetail}"
                     android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@tools:sample/avatars"
-                    android:imageUrl="@{food.food_img}"
-                    android:progressBar="@{progressBarFoodDetail}"
-                    />
+                    tools:src="@tools:sample/avatars" />
 
 
                 <TextView
@@ -174,6 +173,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textInputLayout9" />
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout17"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -197,12 +197,12 @@
                     android:id="@+id/btnOrder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="16dp"
                     android:backgroundTint="#FF9800"
                     android:text="Order"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout17" />
 
                 <ProgressBar
                     android:id="@+id/progressBarFoodDetail"

@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.shem.ubayafood.R
 import com.shem.ubayafood.viewmodel.OrderViewModel
 
@@ -48,8 +49,18 @@ class HistoryFragment : Fragment() {
         })
     }
 
+    override fun onResume() {
+        super.onResume()
+
+    }
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as? MainActivity)?.supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
+        (activity as? MainActivity)?.supportActionBar?.show()
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNav)?.visibility = View.VISIBLE
+
         viewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
         viewModel.getHistory()
         val recViewHistory = view.findViewById<RecyclerView>(R.id.recViewHistory)
@@ -73,6 +84,7 @@ class HistoryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_history, container, false)
     }
