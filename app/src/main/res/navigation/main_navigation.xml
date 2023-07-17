@@ -11,7 +11,9 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/actionHomeFragment"
-            app:destination="@id/itemHome" />
+            app:destination="@id/itemHome"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/actionRegisterFragment"
             app:destination="@id/registerFragment" />
@@ -21,12 +23,6 @@
         android:name="com.shem.ubayafood.view.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/actionProfileFragment"
-            app:destination="@id/itemProfile" />
-        <action
-            android:id="@+id/actionHistoryFragment"
-            app:destination="@id/itemHistory" />
         <action
             android:id="@+id/actionFoodDetailFragment"
             app:destination="@id/foodDetailFragment" />
@@ -39,8 +35,8 @@
     <fragment
         android:id="@+id/itemProfile"
         android:name="com.shem.ubayafood.view.ProfileFragment"
-        android:label="Your Profile"
-        tools:layout="@layout/fragment_profile" >
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/actionTopUpFragment"
             app:destination="@id/topUpFragment" />
@@ -48,8 +44,8 @@
     <fragment
         android:id="@+id/itemHistory"
         android:name="com.shem.ubayafood.view.HistoryFragment"
-        android:label="Order History"
-        tools:layout="@layout/fragment_history" >
+        android:label="History"
+        tools:layout="@layout/fragment_history">
         <action
             android:id="@+id/action_itemHistory_to_historyDetailFragment"
             app:destination="@id/historyDetailFragment" />

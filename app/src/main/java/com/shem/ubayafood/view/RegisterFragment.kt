@@ -43,11 +43,11 @@ class RegisterFragment : Fragment() {
                 txtNewPassword == "" ||
                 txtNewConfirmPassword == ""
             ){
-                Toast.makeText(activity, "Fill in the columns", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Harap isi kolom-kolom", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             if (txtNewPassword != txtNewConfirmPassword) {
-                Toast.makeText(activity, "Harap dua kolom password sama!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Harap isi dari dua kolom password sama!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 //            Log.e("status", "enter here")
