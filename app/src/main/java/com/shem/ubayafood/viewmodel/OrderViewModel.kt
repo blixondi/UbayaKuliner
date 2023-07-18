@@ -23,6 +23,8 @@ class OrderViewModel(application: Application):AndroidViewModel(application) {
     private var queue:RequestQueue? = null
 
     fun getHistory(user_id: String){
+        orderErrorLD.value = false
+        loadingLD.value = true
         queue = Volley.newRequestQueue(getApplication())
         val url = "http://kenhosting.ddns.net/uas-anmp/order/get_order.php"
         val stringRequest = object : StringRequest(
