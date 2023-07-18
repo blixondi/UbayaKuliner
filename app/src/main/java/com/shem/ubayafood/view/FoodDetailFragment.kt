@@ -69,7 +69,6 @@ class FoodDetailFragment : Fragment() {
                 Toast.makeText(context,"Removed from favorite",Toast.LENGTH_SHORT).show()
                 dataBinding.btnDetailFav.setImageResource(R.drawable.baseline_star_border_24)
                 dataBinding.btnDetailFav.tag = "fav"
-
             }
         }
     }
