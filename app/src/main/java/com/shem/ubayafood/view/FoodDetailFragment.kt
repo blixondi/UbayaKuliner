@@ -58,6 +58,20 @@ class FoodDetailFragment : Fragment() {
             dataBinding.txtOrderAmount.setText(amount.toString())
         }
 
+        dataBinding.btnDetailFav.setOnClickListener {
+            if(dataBinding.btnDetailFav.tag.toString() == "fav"){
+                dataBinding.btnDetailFav.tag = "unfav"
+                viewModel.updateFavourite(food_id.toInt(),1)
+                dataBinding.btnDetailFav.setImageResource(R.drawable.baseline_star_24)
+                Toast.makeText(context,"Added to favorite",Toast.LENGTH_SHORT).show()
+            } else{
+                viewModel.updateFavourite(food_id.toInt(),0)
+                Toast.makeText(context,"Removed from favorite",Toast.LENGTH_SHORT).show()
+                dataBinding.btnDetailFav.setImageResource(R.drawable.baseline_star_border_24)
+                dataBinding.btnDetailFav.tag = "fav"
+
+            }
+        }
     }
 
 }

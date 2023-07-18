@@ -227,16 +227,18 @@
                     app:layout_constraintStart_toEndOf="@+id/lblFoodPriceDetail"
                     app:layout_constraintTop_toBottomOf="@+id/txtFoodDescription" />
 
-                <Button
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/btnDetailFav"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:text="add to favorite"
-                    app:icon="@drawable/baseline_star_border_24"
+                    android:clickable="true"
+                    android:tag="fav"
+                    app:backgroundTint="#FF9800"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/baseline_star_border_24" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
