@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 
-//model for Room database
 @Entity
 data class Session(
     @ColumnInfo(name="username")
@@ -16,7 +15,6 @@ data class Session(
     var id:Int = 0
 }
 
-//model for Live Data
 @Entity("users")
 data class User(
     @SerializedName("id")
@@ -57,6 +55,17 @@ data class Food(
     var food_img:String,
     @ColumnInfo(name = "is_favourite")
     var is_favourite: Int
+)
+
+@Entity("detail")
+data class Detail(
+    @ColumnInfo("id")
+    @PrimaryKey(autoGenerate = false)
+    var food_id:Int,
+    @ColumnInfo("address")
+    var food_address:String,
+    @ColumnInfo("recipient")
+    var food_recipient:String
 )
 
 data class Order(

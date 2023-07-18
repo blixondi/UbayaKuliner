@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.shem.ubayafood.util.MIGRATION_1_2
 
-@Database(entities = [User::class, Food::class], version = 2)
+@Database(entities = [User::class, Food::class, Detail::class], version = 3)
 abstract class UKDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun favouriteDao(): FavouriteDao
