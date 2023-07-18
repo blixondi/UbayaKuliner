@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -7,7 +8,14 @@
         <variable
             name="user"
             type="com.shem.ubayafood.model.User" />
+        <variable
+            name="oldpassword"
+            type="String" />
+        <variable
+            name="newpassword"
+            type="String" />
     </data>
+
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -169,6 +177,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView15">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:text="@={oldpassword}"
                         android:id="@+id/txtEditOldPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -204,6 +213,7 @@
                     app:startIconTint="#FF9800">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:text="@={newpassword}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword" />
@@ -227,7 +237,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="Current Balance: Rp. 80000"
+                    android:text="@{`Current Balance: Rp. ` + user.balance}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView8" />

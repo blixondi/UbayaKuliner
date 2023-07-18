@@ -40,6 +40,11 @@
         <action
             android:id="@+id/actionTopUpFragment"
             app:destination="@id/topUpFragment" />
+        <action
+            android:id="@+id/actionLoginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/main_navigation"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/itemHistory"

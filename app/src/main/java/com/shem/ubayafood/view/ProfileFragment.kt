@@ -8,8 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.shem.ubayafood.R
 import com.shem.ubayafood.databinding.FragmentProfileBinding
@@ -40,9 +43,7 @@ class ProfileFragment : Fragment() {
 
         viewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
-        val btnTO = view.findViewById<Button>(R.id.btnTO)
-        val btnLogout = view.findViewById<Button>(R.id.btnLogout)
-        val btnUpdateProfile = view.findViewById<Button>(R.id.btnUpdateProfile)
+
 
         var sharedPreferences = activity!!.getSharedPreferences("LoginDetails",
             Context.MODE_PRIVATE
@@ -57,24 +58,49 @@ class ProfileFragment : Fragment() {
             dataBinding.user = user
 
         }
-        btnTO.setOnClickListener {
-            // put top up amount to sqlite
-
-            // put top up amount to mysql
+        dataBinding.btnTO.setOnClickListener {
+            val action = ProfileFragmentDirections.actionTopUpFragment()
+            Navigation.findNavController(it).navigate(action)
 
         }
 
-        btnLogout.setOnClickListener {
+        dataBinding.btnLogout.setOnClickListener {
             // clear user on sqlite
-
-
+            viewModel.update(dataBinding.user!!)
+            viewModel.deleteUser()
+            viewModel.statusLD.observe(this){status->
+                if (status == "OK"){
+                    Toast.makeText(activity, "Success upload user data", Toast.LENGTH_SHORT).show()
+                    val action = ProfileFragmentDirections.actionLoginFragment()
+                    Navigation.findNavController(it).navigate(action)
+                }
+                else{
+                    Toast.makeText(activity, "Failed upload user data", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
-        btnUpdateProfile.setOnClickListener {
+        dataBinding.btnUpdateProfile.setOnClickListener {
             // put profile changes to sqlite
+            if (dataBinding.user?.password != dataBinding?.oldpassword){
+                Toast.makeText(activity, "Password is incorrect", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (dataBinding?.newpassword == "" || dataBinding?.newpassword == null){
+                Toast.makeText(activity, "Fill in the new password", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            dataBinding.user?.password = dataBinding.newpassword!!
+            viewModel.updateUser(dataBinding.user!!)
+            viewModel.statusLD.observe(this){status->
+                if (status == "OK"){
+                    Toast.makeText(activity, "Success editing", Toast.LENGTH_SHORT).show()
 
-            // put profile changes to mysql
-//            viewModel.update()
+                }
+                else{
+                    Toast.makeText(activity, "Failed editing", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
