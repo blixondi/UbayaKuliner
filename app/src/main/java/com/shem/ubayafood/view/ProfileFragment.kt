@@ -68,6 +68,9 @@ class ProfileFragment : Fragment() {
             // clear user on sqlite
             viewModel.update(dataBinding.user!!)
             viewModel.deleteUser()
+            val edit = sharedPreferences.edit()
+            edit.clear()
+            edit.apply()
             viewModel.statusLD.observe(this){status->
                 if (status == "OK"){
                     Toast.makeText(activity, "Success upload user data", Toast.LENGTH_SHORT).show()

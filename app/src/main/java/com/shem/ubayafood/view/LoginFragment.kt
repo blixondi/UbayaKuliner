@@ -46,7 +46,12 @@ class LoginFragment : Fragment() {
         userVM = ViewModelProvider(this)[UserViewModel::class.java]
 
         var sharedPreferences = activity!!.getSharedPreferences("LoginDetails", MODE_PRIVATE)
-
+        var id = sharedPreferences.getInt("user_id", 0)
+        Log.e("id", id.toString())
+        if (id != 0){
+            val action = LoginFragmentDirections.actionHomeFragment()
+            Navigation.findNavController(view).navigate(action)
+        }
 
         dataBinding.btnLogin.setOnClickListener {
             var txtUsername = dataBinding.txtUsername.text.toString()
@@ -59,8 +64,9 @@ class LoginFragment : Fragment() {
             var userStatus = userVM.login(txtUsername, txtPassword)
             userVM.userLD.observe(this) { user ->
 //                Log.e("e", user.toString())
-                userVM.addUser(user)
+
                 if (user.username != null && user.username != ""){
+                    userVM.addUser(user)
                     val edit = sharedPreferences.edit()
                     edit.putInt("user_id", user.user_id)
                     edit.apply()
