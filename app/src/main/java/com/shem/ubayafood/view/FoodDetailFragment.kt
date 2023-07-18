@@ -1,5 +1,6 @@
 package com.shem.ubayafood.view
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,8 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.shem.ubayafood.R
 import com.shem.ubayafood.databinding.FragmentFoodDetailBinding
 import com.shem.ubayafood.viewmodel.FoodViewModel
@@ -29,6 +32,12 @@ class FoodDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        var sharedPreferences = activity!!.getSharedPreferences("LoginDetails",
+            Context.MODE_PRIVATE
+        )
+        var user_id = sharedPreferences.getInt("user_id", 0)
+
         var food_id = ""
         var amount = 1
         arguments?.let{
@@ -69,6 +78,18 @@ class FoodDetailFragment : Fragment() {
                 Toast.makeText(context,"Removed from favorite",Toast.LENGTH_SHORT).show()
                 dataBinding.btnDetailFav.setImageResource(R.drawable.baseline_star_border_24)
                 dataBinding.btnDetailFav.tag = "fav"
+            }
+        }
+
+        dataBinding.btnOrder.setOnClickListener {
+            val order_address = dataBinding.txtAlamat.text.toString()
+            val behalf = dataBinding.txtNamaPembeli.text.toString()
+            viewModel.orderFood(food_id, user_id.toString(), amount.toString(), behalf, order_address)
+            viewModel.foodOrderLD.observe(this){status->
+                if(status == "OK"){
+                    Toast.makeText(activity, "Place order successfull!", Toast.LENGTH_SHORT).show()
+                    findNavController().popBackStack()
+                }
             }
         }
     }
