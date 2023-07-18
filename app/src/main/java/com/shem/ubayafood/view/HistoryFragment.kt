@@ -1,5 +1,6 @@
 package com.shem.ubayafood.view
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -61,8 +62,13 @@ class HistoryFragment : Fragment() {
         (activity as? MainActivity)?.supportActionBar?.show()
         activity?.findViewById<BottomNavigationView>(R.id.bottomNav)?.visibility = View.VISIBLE
 
+        var sharedPreferences = activity!!.getSharedPreferences("LoginDetails",
+            Context.MODE_PRIVATE
+        )
+        var id = sharedPreferences.getInt("user_id", 0)
+
         viewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
-        viewModel.getHistory()
+        viewModel.getHistory(id.toString())
         val recViewHistory = view.findViewById<RecyclerView>(R.id.recViewHistory)
         recViewHistory.layoutManager = LinearLayoutManager(context)
         recViewHistory.adapter = historyListAdapter
@@ -74,7 +80,7 @@ class HistoryFragment : Fragment() {
             recViewHistory.visibility = View.GONE
             txtErrorHistory.visibility = View.GONE
             progressLoadHistory.visibility = View.VISIBLE
-            viewModel.getHistory()
+            viewModel.getHistory(id.toString())
             refreshLayout.isRefreshing = false
         }
         observeViewModel()

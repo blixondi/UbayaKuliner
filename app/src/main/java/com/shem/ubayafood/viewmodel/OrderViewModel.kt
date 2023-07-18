@@ -11,6 +11,7 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.shem.ubayafood.model.Order
+import com.shem.ubayafood.model.User
 
 class OrderViewModel(application: Application):AndroidViewModel(application) {
     val orderLD = MutableLiveData<ArrayList<Order>>()
@@ -21,15 +22,12 @@ class OrderViewModel(application: Application):AndroidViewModel(application) {
     val TAG = "TAG"
     private var queue:RequestQueue? = null
 
-    fun getHistory(){
-        loadingLD.value = true
-        orderErrorLD.value = false
-
+    fun getHistory(user_id: String){
         queue = Volley.newRequestQueue(getApplication())
         val url = "http://kenhosting.ddns.net/uas-anmp/order/get_order.php"
-
-        val stringRequest= StringRequest(
-            Request.Method.GET, url,{
+        val stringRequest = object : StringRequest(
+            Request.Method.POST, url,
+            {
                 val sType=object : TypeToken<ArrayList<Order>>(){}.type
                 val result= Gson().fromJson<ArrayList<Order>>(it, sType)
                 orderLD.value=result
@@ -41,9 +39,14 @@ class OrderViewModel(application: Application):AndroidViewModel(application) {
                 Log.d("showvoley", it.toString())
                 orderErrorLD.value=false
                 loadingLD.value=false
+            }) {
+            override fun getParams(): MutableMap<String, String> {
+                val map = HashMap<String, String>()
+                map.set("user_id", user_id)
+                return map
             }
-        )
-        stringRequest.tag=TAG
+        }
+        stringRequest.tag = TAG
         queue?.add(stringRequest)
     }
 

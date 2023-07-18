@@ -57,6 +57,7 @@ class FoodDetailFragment : Fragment() {
             amount += 1
             dataBinding.txtOrderAmount.setText(amount.toString())
         }
+
     }
 
 }
