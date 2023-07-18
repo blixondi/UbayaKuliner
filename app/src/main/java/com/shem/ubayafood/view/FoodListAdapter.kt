@@ -33,8 +33,16 @@ class FoodListAdapter(val foodList:ArrayList<Food>):
         holder.view.food = foodList[position]
         holder.view.listener = this
         holder.view.imgFavorite.setOnClickListener {
-//            Toast.makeText(this, "Favorite button pressed",Toast.LENGTH_SHORT).show()
-            Log.e("checkfavorite","button pressed")
+            if(holder.view.imgFavorite.tag.toString() == "fav"){
+                holder.view.imgFavorite.tag = "unfav"
+                holder.view.imgFavorite.setImageResource(R.drawable.baseline_star_24)
+                Log.e("checkfav","sukses favorit")
+            } else{
+                holder.view.imgFavorite.tag = "fav"
+                holder.view.imgFavorite.setImageResource(R.drawable.baseline_star_border_24)
+                Log.e("checkfav","sukses unfavorit")
+
+            }
         }
     }
 
