@@ -1,8 +1,11 @@
 package com.shem.ubayafood.view
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.contentValuesOf
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
@@ -29,6 +32,10 @@ class FoodListAdapter(val foodList:ArrayList<Food>):
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
         holder.view.food = foodList[position]
         holder.view.listener = this
+        holder.view.imgFavorite.setOnClickListener {
+//            Toast.makeText(this, "Favorite button pressed",Toast.LENGTH_SHORT).show()
+            Log.e("checkfavorite","button pressed")
+        }
     }
 
     fun updateFoodList(newFoodList: ArrayList<Food>) {

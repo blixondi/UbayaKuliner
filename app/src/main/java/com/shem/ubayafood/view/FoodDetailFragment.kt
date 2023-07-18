@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -29,6 +30,7 @@ class FoodDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var food_id = ""
+        var amount = 1
         arguments?.let{
             food_id = FoodDetailFragmentArgs.fromBundle(requireArguments()).foodId
         }
@@ -39,6 +41,22 @@ class FoodDetailFragment : Fragment() {
         viewModel.foodDetailLD.observe(viewLifecycleOwner, Observer {
             dataBinding.food = it
         });
+
+        dataBinding.txtOrderAmount.setText(amount.toString())
+
+        dataBinding.btnMin.setOnClickListener {
+            if(amount <= 1){
+                Toast.makeText(context,"Minimum order amount is 1",Toast.LENGTH_SHORT).show()
+            } else{
+                amount -= 1
+                dataBinding.txtOrderAmount.setText(amount.toString())
+            }
+        }
+
+        dataBinding.btnPlus.setOnClickListener {
+            amount += 1
+            dataBinding.txtOrderAmount.setText(amount.toString())
+        }
     }
 
 }
