@@ -24,6 +24,7 @@ class FoodViewModel(application: Application): AndroidViewModel(application), Co
     val foodLD = MutableLiveData<ArrayList<Food>>()
     val foodDetailLD = MutableLiveData<Food>()
     val foodErrorLD = MutableLiveData<Boolean>()
+    val foodFavoriteErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
     val foodOrderLD = MutableLiveData<String>()
 
@@ -43,6 +44,15 @@ class FoodViewModel(application: Application): AndroidViewModel(application), Co
         launch {
             val db = buildDB(getApplication())
             db.favouriteDao().updateFavourite(id, is_favourite)
+        }
+    }
+
+    fun getFavorites(){
+        loadingLD.value = true
+        foodFavoriteErrorLD.value = false
+        launch{
+            val db = buildDB(getApplication())
+            db.favouriteDao().selectAllFood()
         }
     }
 

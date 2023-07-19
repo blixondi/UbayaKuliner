@@ -73,4 +73,13 @@
             android:name="order_id"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.shem.ubayafood.view.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/actionFoodDetailFragment2"
+            app:destination="@id/foodDetailFragment" />
+    </fragment>
 </navigation>
