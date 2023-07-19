@@ -35,11 +35,37 @@ class UserViewModel(Application: Application): AndroidViewModel(Application), Co
         }
     }
 
+    fun updateUser(user: User) {
+        launch {
+            val db = buildDB(getApplication())
+//            Log.e("user", user.toString())
+            db.userDao().updateUser(user.user_id, user.username, user.firstName, user.lastName, user.password)
+            statusLD.postValue("OK")
+        }
+    }
+
+    fun updateBalance(user: User, balance:Int) {
+        launch {
+            val db = buildDB(getApplication())
+//            Log.e("user", user.toString())
+            db.userDao().updateBalance(user.user_id, balance)
+            statusLD.postValue("OK")
+        }
+    }
+
     fun getUser(id: Int) {
         launch {
             val db = buildDB(getApplication())
 //            Log.e("user", id.toString())
             userLD.postValue(db.userDao().selectUser(id))
+        }
+    }
+
+    fun deleteUser() {
+        launch {
+            val db = buildDB(getApplication())
+//            Log.e("user", id.toString())
+            db.userDao().deleteUser()
         }
     }
 
@@ -93,7 +119,7 @@ class UserViewModel(Application: Application): AndroidViewModel(Application), Co
         queue?.add(stringRequest)
     }
 
-    fun update(user: User, status: String){
+    fun update(user: User){
         queue = Volley.newRequestQueue(getApplication())
         val url = "https://kenhosting.ddns.net/uas-anmp/user/update.php"
         val stringRequest = object : StringRequest(
@@ -114,13 +140,15 @@ class UserViewModel(Application: Application): AndroidViewModel(Application), Co
                 map.set("first_name",user.firstName)
                 map.set("last_name",user.lastName)
                 map.set("balance",user.balance.toString())
-                map.set("status", status)
+//                map.set("status", status)
                 return map
             }
         }
         stringRequest.tag = TAG
         queue?.add(stringRequest)
     }
+
+
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.IO
 }

@@ -21,12 +21,12 @@ class OrderViewModel(application: Application):AndroidViewModel(application) {
     val TAG = "TAG"
     private var queue:RequestQueue? = null
 
-    fun getHistory(){
+    fun getHistory(user_id: Int){
         loadingLD.value = true
         orderErrorLD.value = false
 
         queue = Volley.newRequestQueue(getApplication())
-        val url = "http://kenhosting.ddns.net/uas-anmp/order/get_order.php"
+        val url = "http://kenhosting.ddns.net/uas-anmp/order/get_order.php?user_id=$user_id"
 
         val stringRequest= StringRequest(
             Request.Method.GET, url,{
