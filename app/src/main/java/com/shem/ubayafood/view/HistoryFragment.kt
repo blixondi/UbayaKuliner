@@ -26,6 +26,12 @@ class HistoryFragment : Fragment() {
     fun observeViewModel(){
         viewModel.orderLD.observe(viewLifecycleOwner, Observer {
             historyListAdapter.updateOrderList(it)
+            val txtEmptyHistory = view?.findViewById<TextView>(R.id.txtEmptyHistory)
+            if(it.isEmpty()){
+                txtEmptyHistory?.visibility = View.VISIBLE
+            } else{
+                txtEmptyHistory?.visibility = View.GONE
+            }
         })
 
         viewModel.orderErrorLD.observe(viewLifecycleOwner, Observer{

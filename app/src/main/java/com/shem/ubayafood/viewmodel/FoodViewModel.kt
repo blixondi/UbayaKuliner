@@ -22,7 +22,7 @@ import kotlin.coroutines.CoroutineContext
 
 class FoodViewModel(application: Application): AndroidViewModel(application), CoroutineScope {
     val foodLD = MutableLiveData<ArrayList<Food>>()
-    val favoriteFoodLD = MutableLiveData<ArrayList<Food>>()
+    val favoriteFoodLD = MutableLiveData<List<Food>>()
     val foodDetailLD = MutableLiveData<Food>()
     val foodErrorLD = MutableLiveData<Boolean>()
     val foodFavoriteErrorLD = MutableLiveData<Boolean>()

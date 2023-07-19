@@ -12,7 +12,7 @@ interface FavouriteDao {
     fun insertAll(vararg food:Food)
 
     @Query("SELECT * FROM foods WHERE is_favourite = 1")
-    fun selectAllFood(): ArrayList<Food>
+    fun selectAllFood(): List<Food>
 
     @Query("SELECT is_favourite FROM foods WHERE id = :id")
     fun checkFavorite(id: Int): Int

@@ -9,7 +9,7 @@
             type="com.shem.ubayafood.model.Food" />
         <variable
             name="listener"
-            type="com.shem.ubayafood.view.FoodItemLayoutInterface" />
+            type="com.shem.ubayafood.view.FavoriteItemLayoutInterface" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,19 +38,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="24dp"
-                    android:text="TextView"
-                    app:layout_constraintStart_toEndOf="@+id/imgFood"
+                    android:text="@{food.food_price}"
+                    app:layout_constraintStart_toEndOf="@+id/imgFoodFavorite"
                     app:layout_constraintTop_toBottomOf="@+id/txtFoodNameFavorite" />
-
-                <ImageView
-                    android:id="@+id/imgFood"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:srcCompat="@tools:sample/avatars" />
 
                 <TextView
                     android:id="@+id/txtFoodNameFavorite"
@@ -58,10 +48,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
-                    android:text="@string/nasi_goreng"
+                    android:text="@{food.food_name}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                     android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/imgFood"
+                    app:layout_constraintStart_toEndOf="@+id/imgFoodFavorite"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
@@ -72,8 +62,32 @@
                     android:layout_marginEnd="24dp"
                     android:backgroundTint="#FF9800"
                     android:text="Lihat detail"
+                    android:tag="@{food.food_id}"
+                    android:onClick="@{listener::onButtonDetailClick}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtFoodPriceFavorite" />
+
+                <ImageView
+                    android:id="@+id/imgFoodFavorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:scaleType="centerCrop"
+                    android:imageUrl="@{food.food_img}"
+                    android:progressBar="@{progressBarFav}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <ProgressBar
+                    android:id="@+id/progressBarFav"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/imgFoodFavorite"
+                    app:layout_constraintEnd_toEndOf="@+id/imgFoodFavorite"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/imgFoodFavorite" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
