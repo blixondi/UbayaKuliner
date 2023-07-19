@@ -33,6 +33,7 @@ class OrderViewModel(application: Application):AndroidViewModel(application) {
                 val sType=object : TypeToken<ArrayList<Order>>(){}.type
                 val result= Gson().fromJson<ArrayList<Order>>(it, sType)
                 orderLD.value=result
+
                 loadingLD.value=false
 
                 Log.d("showvoley", result.toString())

@@ -22,11 +22,13 @@ import kotlin.coroutines.CoroutineContext
 
 class FoodViewModel(application: Application): AndroidViewModel(application), CoroutineScope {
     val foodLD = MutableLiveData<ArrayList<Food>>()
+    val favoriteFoodLD = MutableLiveData<ArrayList<Food>>()
     val foodDetailLD = MutableLiveData<Food>()
     val foodErrorLD = MutableLiveData<Boolean>()
     val foodFavoriteErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
     val foodOrderLD = MutableLiveData<String>()
+    val favoriteLD = MutableLiveData<Int>()
 
     val TAG = "tag"
     private var queue: RequestQueue? = null
@@ -52,7 +54,14 @@ class FoodViewModel(application: Application): AndroidViewModel(application), Co
         foodFavoriteErrorLD.value = false
         launch{
             val db = buildDB(getApplication())
-            db.favouriteDao().selectAllFood()
+            favoriteFoodLD.postValue(db.favouriteDao().selectAllFood())
+        }
+    }
+
+    fun checkFavorite(food_id: Int){
+        launch{
+            val db = buildDB(getApplication())
+            favoriteLD.postValue(db.favouriteDao().checkFavorite(food_id))
         }
     }
 

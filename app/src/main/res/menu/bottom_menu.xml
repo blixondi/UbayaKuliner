@@ -8,6 +8,11 @@
         android:title="Home"
         app:showAsAction="always" />
     <item
+        android:id="@+id/itemFavorite"
+        android:icon="@drawable/baseline_favorite_24"
+        android:title="Favorite"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/itemHistory"
         android:icon="@drawable/baseline_history_24"
         android:title="History"
@@ -16,10 +21,5 @@
         android:id="@+id/itemProfile"
         android:icon="@drawable/baseline_person_24"
         android:title="Profile"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/itemFavorite"
-        android:icon="@drawable/baseline_favorite_24"
-        android:title="Favorite"
         app:showAsAction="always" />
 </menu>

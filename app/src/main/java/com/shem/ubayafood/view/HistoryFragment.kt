@@ -69,11 +69,12 @@ class HistoryFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
         viewModel.getHistory(id.toString())
+
         val recViewHistory = view.findViewById<RecyclerView>(R.id.recViewHistory)
         recViewHistory.layoutManager = LinearLayoutManager(context)
         recViewHistory.adapter = historyListAdapter
 
-        val refreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.refreshLayoutHistory)
+        val refreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.refreshLayoutFavorite)
         val progressLoadHistory = view.findViewById<ProgressBar>(R.id.progressLoadHistory)
         val txtErrorHistory = view.findViewById<TextView>(R.id.txtErrorHistory)
         refreshLayout.setOnRefreshListener {

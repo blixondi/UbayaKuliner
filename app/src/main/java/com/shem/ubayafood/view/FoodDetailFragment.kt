@@ -2,6 +2,7 @@ package com.shem.ubayafood.view
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -39,12 +40,18 @@ class FoodDetailFragment : Fragment() {
         var user_id = sharedPreferences.getInt("user_id", 0)
 
         var food_id = ""
+        var is_favorite = 0
         var amount = 1
         arguments?.let{
             food_id = FoodDetailFragmentArgs.fromBundle(requireArguments()).foodId
         }
 
         viewModel = ViewModelProvider(this).get(FoodViewModel::class.java)
+        viewModel.checkFavorite(food_id.toInt())
+        viewModel.favoriteLD.observe(viewLifecycleOwner, Observer {
+            is_favorite = it
+            Log.e("testfav",is_favorite.toString())
+        })
         viewModel.getFoodDetail(food_id)
 
         viewModel.foodDetailLD.observe(viewLifecycleOwner, Observer {

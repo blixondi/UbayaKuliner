@@ -74,7 +74,7 @@
             app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/favoriteFragment"
+        android:id="@+id/itemFavorite"
         android:name="com.shem.ubayafood.view.FavoriteFragment"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" >
