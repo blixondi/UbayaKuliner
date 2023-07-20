@@ -32,6 +32,7 @@ class UserViewModel(Application: Application): AndroidViewModel(Application), Co
             val db = buildDB(getApplication())
 //            Log.e("user", user.toString())
             db.userDao().insert(user)
+            statusLD.postValue("OK")
         }
     }
 
@@ -77,7 +78,7 @@ class UserViewModel(Application: Application): AndroidViewModel(Application), Co
             {
                 val result = Gson().fromJson<User>(it, User::class.java)
                 userLD.value = result
-                Log.e("showvoley", result.toString())
+//                Log.e("showvoley", result.toString())
             },
             {
                 Log.d("showvoley", it.toString())
