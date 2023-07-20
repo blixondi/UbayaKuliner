@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.shem.ubayafood.R
 import com.shem.ubayafood.databinding.FragmentProfileBinding
 import com.shem.ubayafood.databinding.FragmentTopUpBinding
+import com.shem.ubayafood.util.NotificationHelper
 import com.shem.ubayafood.viewmodel.UserViewModel
 
 
@@ -66,11 +67,13 @@ class TopUpFragment : Fragment() {
             viewModel.updateBalance(dataBinding.user!!, dataBinding.balance!!.toInt())
             viewModel.statusLD.observe(this){ status ->
                 if (status == "OK"){
-                    Toast.makeText(activity, "Success editing", Toast.LENGTH_SHORT).show()
+                    NotificationHelper(view.context)
+                        .createNotification("Success!","Top up successful!",R.drawable.topup)
+                    Toast.makeText(activity, "Top up success!", Toast.LENGTH_SHORT).show()
                     findNavController().popBackStack()
                 }
                 else{
-                    Toast.makeText(activity, "Failed editing", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "Top up fail. Please try again", Toast.LENGTH_SHORT).show()
                 }
             }
         }

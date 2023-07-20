@@ -15,6 +15,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.shem.ubayafood.R
 import com.shem.ubayafood.databinding.FragmentFoodDetailBinding
+import com.shem.ubayafood.util.NotificationHelper
 import com.shem.ubayafood.viewmodel.FoodViewModel
 import com.shem.ubayafood.viewmodel.UserViewModel
 
@@ -114,6 +115,8 @@ class FoodDetailFragment : Fragment() {
                     viewModel.orderFood(food_id, user_id.toString(), amount.toString(), behalf, order_address)
                     viewModel.foodOrderLD.observe(this){status->
                         if(status == "OK"){
+                            NotificationHelper(view.context)
+                                .createNotification("Success!","Place order successfull",R.drawable.cooking)
                             Toast.makeText(activity, "Place order successfull!", Toast.LENGTH_SHORT).show()
                             findNavController().popBackStack()
                         }
