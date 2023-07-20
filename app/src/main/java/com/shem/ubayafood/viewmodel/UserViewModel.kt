@@ -23,6 +23,7 @@ import kotlin.coroutines.CoroutineContext
 class UserViewModel(Application: Application): AndroidViewModel(Application), CoroutineScope {
     val userLD = MutableLiveData<User>()
     val statusLD = MutableLiveData<String>()
+    val balanceLD = MutableLiveData<Int>()
     val TAG = "volleytag"
     private var queue: RequestQueue? = null
 
@@ -45,11 +46,27 @@ class UserViewModel(Application: Application): AndroidViewModel(Application), Co
         }
     }
 
+    fun getBalance(user_id: Int){
+        launch {
+            val db = buildDB(getApplication())
+            balanceLD.postValue(db.userDao().getBalance(user_id))
+        }
+    }
+
     fun updateBalance(user: User, balance:Int) {
         launch {
             val db = buildDB(getApplication())
 //            Log.e("user", user.toString())
             db.userDao().updateBalance(user.user_id, balance)
+            statusLD.postValue("OK")
+        }
+    }
+
+    fun reduceBalance(user_id: Int, balance:Int) {
+        launch {
+            val db = buildDB(getApplication())
+//            Log.e("user", user.toString())
+            db.userDao().reduceBalance(user_id, balance)
             statusLD.postValue("OK")
         }
     }
