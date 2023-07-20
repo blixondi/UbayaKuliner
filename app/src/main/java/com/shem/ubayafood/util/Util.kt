@@ -46,7 +46,7 @@ fun buildDB(context: Context): UKDatabase {
         context.applicationContext,
         UKDatabase::class.java,
         DB_NAME
-    ).addMigrations(MIGRATION_1_2).build()
+    ).addMigrations(MIGRATION_1_2).fallbackToDestructiveMigration().build()
 
     return db
 }
@@ -54,5 +54,15 @@ fun buildDB(context: Context): UKDatabase {
 val MIGRATION_1_2 = object : Migration(1,2){
     override fun migrate(database: SupportSQLiteDatabase) {
         database.execSQL("alter table foods add column user_id integer not null")
+    }
+}
+
+val MIGRATION_2_3 = object : Migration(2,3){
+    override fun migrate(database: SupportSQLiteDatabase) {
+        database.execSQL("CREATE TABLE IF NOT EXISTS details (\n" +
+                "    id INTEGER PRIMARY KEY NOT NULL,\n" +
+                "    address TEXT,\n" +
+                "    recipient TEXT\n" +
+                ");")
     }
 }

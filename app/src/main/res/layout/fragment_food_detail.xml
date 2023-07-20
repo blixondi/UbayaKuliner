@@ -7,6 +7,9 @@
         <variable
             name="food"
             type="com.shem.ubayafood.model.Food" />
+        <variable
+            name="detail"
+            type="com.shem.ubayafood.model.Detail" />
     </data>
 
     <FrameLayout
@@ -156,6 +159,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView10">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:text="@{detail.address}"
                         android:id="@+id/txtAlamat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -188,6 +192,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView11">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:text="@{detail.recipient}"
                         android:id="@+id/txtNamaPembeli"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />

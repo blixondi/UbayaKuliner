@@ -79,11 +79,13 @@ class UserViewModel(Application: Application): AndroidViewModel(Application), Co
         }
     }
 
-    fun deleteUser() {
+    fun deleteAll() {
         launch {
             val db = buildDB(getApplication())
-//            Log.e("user", id.toString())
             db.userDao().deleteUser()
+            db.favouriteDao().deleteFavourite()
+            db.detailDao().deleteDetail()
+
         }
     }
 

@@ -16,7 +16,9 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.shem.ubayafood.R
 import com.shem.ubayafood.databinding.FragmentProfileBinding
+import com.shem.ubayafood.model.FavouriteDao
 import com.shem.ubayafood.model.User
+import com.shem.ubayafood.viewmodel.FoodViewModel
 import com.shem.ubayafood.viewmodel.UserViewModel
 
 
@@ -35,6 +37,8 @@ class ProfileFragment : Fragment() {
         return dataBinding.root
     }
     private lateinit var viewModel:UserViewModel
+    private lateinit var viewModelFood:FoodViewModel
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as? MainActivity)?.supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
@@ -66,8 +70,9 @@ class ProfileFragment : Fragment() {
 
         dataBinding.btnLogout.setOnClickListener {
             // clear user on sqlite
+
             viewModel.update(dataBinding.user!!)
-            viewModel.deleteUser()
+            viewModel.deleteAll()
             val edit = sharedPreferences.edit()
             edit.clear()
             edit.apply()

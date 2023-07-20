@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.shem.ubayafood.R
 import com.shem.ubayafood.databinding.FragmentFoodDetailBinding
 import com.shem.ubayafood.util.NotificationHelper
+import com.shem.ubayafood.model.Detail
 import com.shem.ubayafood.viewmodel.FoodViewModel
 import com.shem.ubayafood.viewmodel.UserViewModel
 
@@ -65,6 +66,11 @@ class FoodDetailFragment : Fragment() {
             }
         })
         viewModel.getFoodDetail(food_id)
+        viewModel.getDetails(food_id.toInt())
+
+        viewModel.detailLD.observe(viewLifecycleOwner) { detail ->
+            dataBinding.detail = detail
+        }
 
         viewModel.foodDetailLD.observe(viewLifecycleOwner, Observer {
             dataBinding.food = it
@@ -104,6 +110,14 @@ class FoodDetailFragment : Fragment() {
             var order_address = dataBinding.txtAlamat.text.toString()
             var behalf = dataBinding.txtNamaPembeli.text.toString()
 
+            viewModel.orderFood(food_id, user_id.toString(), amount.toString(), behalf, order_address)
+            viewModel.foodOrderLD.observe(this){status->
+                if(status == "OK"){
+                    Toast.makeText(activity, "Place order successfull!", Toast.LENGTH_SHORT).show()
+                    findNavController().popBackStack()
+            var order_address = dataBinding.txtAlamat.text.toString()
+            var behalf = dataBinding.txtNamaPembeli.text.toString()
+
             if(order_address == "" || behalf == ""){
                 Toast.makeText(activity, "Order address and recipient must be filled", Toast.LENGTH_SHORT).show()
             } else {
@@ -112,6 +126,7 @@ class FoodDetailFragment : Fragment() {
                     Toast.makeText(activity, "Insufficent balance. Please top up", Toast.LENGTH_SHORT).show()
                 } else {
                     userVM.reduceBalance(user_id, foodPrice)
+                    viewModel.addDetails(Detail(food_id.toInt(), order_address, behalf))
                     viewModel.orderFood(food_id, user_id.toString(), amount.toString(), behalf, order_address)
                     viewModel.foodOrderLD.observe(this){status->
                         if(status == "OK"){
