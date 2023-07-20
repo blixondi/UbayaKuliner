@@ -57,7 +57,7 @@ data class Food(
     var is_favourite: Int
 )
 
-@Entity("detail")
+@Entity("details")
 data class Detail(
     @ColumnInfo("id")
     @PrimaryKey(autoGenerate = false)

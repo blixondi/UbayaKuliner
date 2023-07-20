@@ -60,9 +60,6 @@ val MIGRATION_1_2 = object : Migration(1,2){
 
 val MIGRATION_2_3 = object : Migration(2,3){
     override fun migrate(database: SupportSQLiteDatabase) {
-        database.execSQL("alter table todo add column is_done integer default 0 not null")
+        database.execSQL("create table if not exists `Detail` (`food_id` INTEGER, PRIMARY KEY(`food_id`))")
     }
-    // dikarenakan tidak ada tipe data native yang hanya dapat merepresentasikan boolean ( 0 dan 1 )
-    // sebagai penggantinya, SQLite menggunakan integer yang dimana 0 bernilai false
-    // dan semua angka selain 0 akan bernilai true (negatif maupun positif)
 }

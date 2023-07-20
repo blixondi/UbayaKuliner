@@ -9,14 +9,14 @@ import androidx.room.Query
 @Dao
 interface DetailDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg detail:Detail)
+    fun insert(detail:Detail)
 
-    @Query("SELECT address, recipient FROM detail WHERE id = :id")
+    @Query("SELECT * FROM details WHERE id = :id")
     fun getDetail(id: Int): Detail
 
-    @Query("UPDATE detail SET address = :address, recipient = :recipient WHERE id = :id")
+    @Query("UPDATE details SET address = :address, recipient = :recipient WHERE id = :id")
     fun updateDetail(address: String, recipient: String, id: Int)
 
-    @Query("DELETE FROM detail")
+    @Query("DELETE FROM details")
     fun deleteDetail()
 }

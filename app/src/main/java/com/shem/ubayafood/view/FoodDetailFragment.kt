@@ -101,6 +101,7 @@ class FoodDetailFragment : Fragment() {
             viewModel.orderFood(food_id, user_id.toString(), amount.toString(), behalf, order_address)
             viewModel.foodOrderLD.observe(this){status->
                 if(status == "OK"){
+                    viewModel.insertDetail(food_id.toInt(), order_address, behalf)
                     Toast.makeText(activity, "Place order successfull!", Toast.LENGTH_SHORT).show()
                     findNavController().popBackStack()
                 }
