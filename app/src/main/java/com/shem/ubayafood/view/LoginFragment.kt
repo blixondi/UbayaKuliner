@@ -3,6 +3,8 @@ package com.shem.ubayafood.view
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -40,9 +42,6 @@ class LoginFragment : Fragment() {
         (activity as? MainActivity)?.supportActionBar?.hide()
         activity?.findViewById<BottomNavigationView>(R.id.bottomNav)?.visibility = View.GONE
 
-
-
-
         userVM = ViewModelProvider(this)[UserViewModel::class.java]
 
         var sharedPreferences = activity!!.getSharedPreferences("LoginDetails", MODE_PRIVATE)
@@ -52,34 +51,44 @@ class LoginFragment : Fragment() {
             val action = LoginFragmentDirections.actionHomeFragment()
             Navigation.findNavController(view).navigate(action)
         }
+        val action = LoginFragmentDirections.actionHomeFragment()
+
 
         dataBinding.btnLogin.setOnClickListener {
-            var txtUsername = dataBinding.txtUsername.text.toString()
-            var txtPassword = dataBinding.txtPassword.text.toString()
+            val txtUsername = dataBinding.txtUsername.text.toString()
+            val txtPassword = dataBinding.txtPassword.text.toString()
 
-            if (txtPassword == "" || txtUsername == "") {
+            if (txtPassword.isEmpty() || txtUsername.isEmpty()) {
                 Toast.makeText(activity, "Fill in the columns", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            var userStatus = userVM.login(txtUsername, txtPassword)
-            userVM.userLD.observe(this) { user ->
-//                Log.e("e", user.toString())
 
-                if (user.username != null && user.username != ""){
+            userVM = ViewModelProvider(this)[UserViewModel::class.java]
+            val userStatus = userVM.login(txtUsername, txtPassword)
+
+
+        }
+
+        userVM.userLD.observe(viewLifecycleOwner) { user ->
+            Log.e("user", user.toString())
+            if (user.username != null && user.username.isNotBlank()) {
                     userVM.addUser(user)
-                    val edit = sharedPreferences.edit()
-                    edit.putInt("user_id", user.user_id)
-                    edit.apply()
-                    val action = LoginFragmentDirections.actionHomeFragment()
-                    Navigation.findNavController(it).navigate(action)
-                }
-                else{
-                    Toast.makeText(activity, "Usernane/password salah", Toast.LENGTH_SHORT).show()
-                }
+                    Log.e("ed", user.username)
+                    userVM.statusLD.observe(this){status->
+                        if (status == "OK"){
+                            val sharedPreferences = activity?.getSharedPreferences("LoginDetails", MODE_PRIVATE)
+                            val edit = sharedPreferences?.edit()
+                            edit?.putInt("user_id", user.user_id)
+                            edit?.apply()
 
+                            val action = LoginFragmentDirections.actionHomeFragment()
+                            Navigation.findNavController(requireView()).navigate(action)
+                        }
+                    }
+                Log.e("", "------------------------------")
+            } else {
+                Toast.makeText(activity, "Invalid username/password", Toast.LENGTH_SHORT).show()
             }
-
-
         }
 
         dataBinding.btnRegister.setOnClickListener {
