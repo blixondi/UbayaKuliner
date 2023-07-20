@@ -40,7 +40,6 @@ class FoodDetailFragment : Fragment() {
         var user_id = sharedPreferences.getInt("user_id", 0)
 
         var food_id = ""
-        var is_favorite = 0
         var amount = 1
         arguments?.let{
             food_id = FoodDetailFragmentArgs.fromBundle(requireArguments()).foodId
@@ -49,21 +48,16 @@ class FoodDetailFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(FoodViewModel::class.java)
         viewModel.checkFavorite(food_id.toInt())
         viewModel.favoriteLD.observe(viewLifecycleOwner, Observer {
-            is_favorite = it
+            if(it == 1){
+                dataBinding.btnDetailFav.tag = "unfav"
+                dataBinding.btnDetailFav.setImageResource(R.drawable.baseline_star_24)
+            }
         })
-
-
-
         viewModel.getFoodDetail(food_id)
 
         viewModel.foodDetailLD.observe(viewLifecycleOwner, Observer {
             dataBinding.food = it
         });
-
-        if(is_favorite == 1){
-            dataBinding.btnDetailFav.setImageResource(R.drawable.baseline_star_24)
-            dataBinding.btnDetailFav.tag = "unfav"
-        }
 
         dataBinding.txtOrderAmount.setText(amount.toString())
 
@@ -101,7 +95,6 @@ class FoodDetailFragment : Fragment() {
             viewModel.orderFood(food_id, user_id.toString(), amount.toString(), behalf, order_address)
             viewModel.foodOrderLD.observe(this){status->
                 if(status == "OK"){
-                    viewModel.insertDetail(food_id.toInt(), order_address, behalf)
                     Toast.makeText(activity, "Place order successfull!", Toast.LENGTH_SHORT).show()
                     findNavController().popBackStack()
                 }

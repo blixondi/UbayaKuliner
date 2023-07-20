@@ -76,8 +76,8 @@
     <fragment
         android:id="@+id/itemFavorite"
         android:name="com.shem.ubayafood.view.FavoriteFragment"
-        android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" >
+        android:label="Favorite Foods"
+        tools:layout="@layout/fragment_favorite">
         <action
             android:id="@+id/actionFoodDetailFragment2"
             app:destination="@id/foodDetailFragment" />
