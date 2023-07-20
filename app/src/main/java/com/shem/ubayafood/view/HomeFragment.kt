@@ -27,6 +27,7 @@ class HomeFragment : Fragment() {
     fun observeViewModel(){
         viewModel.foodLD.observe(viewLifecycleOwner, Observer {
             foodListAdapter.updateFoodList(it)
+
             viewModel.addFoods(it)
         })
 
