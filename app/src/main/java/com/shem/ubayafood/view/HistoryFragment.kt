@@ -26,6 +26,12 @@ class HistoryFragment : Fragment() {
     fun observeViewModel(){
         viewModel.orderLD.observe(viewLifecycleOwner, Observer {
             historyListAdapter.updateOrderList(it)
+            val txtEmptyHistory = view?.findViewById<TextView>(R.id.txtEmptyHistory)
+            if(it.isEmpty()){
+                txtEmptyHistory?.visibility = View.VISIBLE
+            } else{
+                txtEmptyHistory?.visibility = View.GONE
+            }
         })
 
         viewModel.orderErrorLD.observe(viewLifecycleOwner, Observer{
@@ -62,26 +68,26 @@ class HistoryFragment : Fragment() {
         (activity as? MainActivity)?.supportActionBar?.show()
         activity?.findViewById<BottomNavigationView>(R.id.bottomNav)?.visibility = View.VISIBLE
 
-        viewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
         var sharedPreferences = activity!!.getSharedPreferences("LoginDetails",
             Context.MODE_PRIVATE
         )
         var id = sharedPreferences.getInt("user_id", 0)
-        viewModel.getHistory(id)
 
+        viewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
+        viewModel.getHistory(id.toString())
 
         val recViewHistory = view.findViewById<RecyclerView>(R.id.recViewHistory)
         recViewHistory.layoutManager = LinearLayoutManager(context)
         recViewHistory.adapter = historyListAdapter
 
-        val refreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.refreshLayoutHistory)
+        val refreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.refreshLayoutFavorite)
         val progressLoadHistory = view.findViewById<ProgressBar>(R.id.progressLoadHistory)
         val txtErrorHistory = view.findViewById<TextView>(R.id.txtErrorHistory)
         refreshLayout.setOnRefreshListener {
             recViewHistory.visibility = View.GONE
             txtErrorHistory.visibility = View.GONE
             progressLoadHistory.visibility = View.VISIBLE
-            viewModel.getHistory(id)
+            viewModel.getHistory(id.toString())
             refreshLayout.isRefreshing = false
         }
         observeViewModel()

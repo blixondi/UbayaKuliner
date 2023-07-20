@@ -6,9 +6,10 @@ interface FoodItemLayoutInterface{
     fun onButtonDetailClick(v: View)
 }
 
-interface FoodDetailLayoutInterface{
-
+interface FavoriteItemLayoutInterface{
+    fun onButtonDetailClick(v: View)
 }
+
 
 interface OrderItemLayoutInterface{
     fun onButtonDetailClick(v: View)

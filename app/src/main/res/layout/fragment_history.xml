@@ -7,7 +7,7 @@
     tools:context=".view.HistoryFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/refreshLayoutHistory"
+        android:id="@+id/refreshLayoutFavorite"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".view.HistoryFragment">
@@ -44,6 +44,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtEmptyHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You haven't done any transactions."
+                app:layout_constraintBottom_toBottomOf="@+id/recViewHistory"
+                app:layout_constraintEnd_toEndOf="@+id/recViewHistory"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/recViewHistory" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

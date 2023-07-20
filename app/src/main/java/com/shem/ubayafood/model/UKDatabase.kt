@@ -11,6 +11,8 @@ abstract class UKDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun favouriteDao(): FavouriteDao
 
+//    abstract fun detailDao(): DetailDao
+
     companion object {
         @Volatile
         private var instance: UKDatabase? = null

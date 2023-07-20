@@ -1,14 +1,19 @@
 package com.shem.ubayafood.view
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.contentValuesOf
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.shem.ubayafood.R
 import com.shem.ubayafood.databinding.FoodItemBinding
 import com.shem.ubayafood.model.Food
+import com.shem.ubayafood.viewmodel.FoodViewModel
 
 class FoodListAdapter(val foodList:ArrayList<Food>):
     RecyclerView.Adapter<FoodListAdapter.FoodViewHolder>(),
