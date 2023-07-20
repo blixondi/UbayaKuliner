@@ -110,35 +110,65 @@ class FoodDetailFragment : Fragment() {
             var order_address = dataBinding.txtAlamat.text.toString()
             var behalf = dataBinding.txtNamaPembeli.text.toString()
 
-            viewModel.orderFood(food_id, user_id.toString(), amount.toString(), behalf, order_address)
-            viewModel.foodOrderLD.observe(this){status->
-                if(status == "OK"){
+            viewModel.orderFood(
+                food_id,
+                user_id.toString(),
+                amount.toString(),
+                behalf,
+                order_address
+            )
+            viewModel.foodOrderLD.observe(this) { status ->
+                if (status == "OK") {
                     Toast.makeText(activity, "Place order successfull!", Toast.LENGTH_SHORT).show()
                     findNavController().popBackStack()
-            var order_address = dataBinding.txtAlamat.text.toString()
-            var behalf = dataBinding.txtNamaPembeli.text.toString()
+                    var order_address = dataBinding.txtAlamat.text.toString()
+                    var behalf = dataBinding.txtNamaPembeli.text.toString()
 
-            if(order_address == "" || behalf == ""){
-                Toast.makeText(activity, "Order address and recipient must be filled", Toast.LENGTH_SHORT).show()
-            } else {
-                var foodPrice = dataBinding.txtFoodPriceDetail.text.toString().toInt() * amount
-                if(currentBalance < foodPrice){
-                    Toast.makeText(activity, "Insufficent balance. Please top up", Toast.LENGTH_SHORT).show()
-                } else {
-                    userVM.reduceBalance(user_id, foodPrice)
-                    viewModel.addDetails(Detail(food_id.toInt(), order_address, behalf))
-                    viewModel.orderFood(food_id, user_id.toString(), amount.toString(), behalf, order_address)
-                    viewModel.foodOrderLD.observe(this){status->
-                        if(status == "OK"){
-                            NotificationHelper(view.context)
-                                .createNotification("Success!","Place order successfull",R.drawable.cooking)
-                            Toast.makeText(activity, "Place order successfull!", Toast.LENGTH_SHORT).show()
-                            findNavController().popBackStack()
+                    if (order_address == "" || behalf == "") {
+                        Toast.makeText(
+                            activity,
+                            "Order address and recipient must be filled",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        var foodPrice =
+                            dataBinding.txtFoodPriceDetail.text.toString().toInt() * amount
+                        if (currentBalance < foodPrice) {
+                            Toast.makeText(
+                                activity,
+                                "Insufficent balance. Please top up",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            userVM.reduceBalance(user_id, foodPrice)
+                            viewModel.addDetails(Detail(food_id.toInt(), order_address, behalf))
+                            viewModel.orderFood(
+                                food_id,
+                                user_id.toString(),
+                                amount.toString(),
+                                behalf,
+                                order_address
+                            )
+                            viewModel.foodOrderLD.observe(this) { status ->
+                                if (status == "OK") {
+                                    NotificationHelper(view.context)
+                                        .createNotification(
+                                            "Success!",
+                                            "Place order successfull",
+                                            R.drawable.cooking
+                                        )
+                                    Toast.makeText(
+                                        activity,
+                                        "Place order successfull!",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    findNavController().popBackStack()
+                                }
+                            }
                         }
                     }
                 }
             }
         }
     }
-
 }
