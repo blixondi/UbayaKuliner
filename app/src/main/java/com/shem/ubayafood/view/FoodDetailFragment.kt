@@ -16,9 +16,11 @@ import androidx.navigation.fragment.findNavController
 import com.shem.ubayafood.R
 import com.shem.ubayafood.databinding.FragmentFoodDetailBinding
 import com.shem.ubayafood.viewmodel.FoodViewModel
+import com.shem.ubayafood.viewmodel.UserViewModel
 
 class FoodDetailFragment : Fragment() {
     private lateinit var viewModel: FoodViewModel
+    private lateinit var userVM: UserViewModel
     private lateinit var dataBinding:FragmentFoodDetailBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,13 +42,21 @@ class FoodDetailFragment : Fragment() {
         var user_id = sharedPreferences.getInt("user_id", 0)
 
         var food_id = ""
+        var currentBalance = 0
         var amount = 1
         arguments?.let{
             food_id = FoodDetailFragmentArgs.fromBundle(requireArguments()).foodId
         }
 
         viewModel = ViewModelProvider(this).get(FoodViewModel::class.java)
+        userVM = ViewModelProvider(this).get(UserViewModel::class.java)
         viewModel.checkFavorite(food_id.toInt())
+        userVM.getBalance(user_id)
+        userVM.balanceLD.observe(viewLifecycleOwner, Observer {
+            currentBalance = it
+            Log.e("currentbalance",it.toString())
+        })
+
         viewModel.favoriteLD.observe(viewLifecycleOwner, Observer {
             if(it == 1){
                 dataBinding.btnDetailFav.tag = "unfav"
@@ -90,13 +100,24 @@ class FoodDetailFragment : Fragment() {
         }
 
         dataBinding.btnOrder.setOnClickListener {
-            val order_address = dataBinding.txtAlamat.text.toString()
-            val behalf = dataBinding.txtNamaPembeli.text.toString()
-            viewModel.orderFood(food_id, user_id.toString(), amount.toString(), behalf, order_address)
-            viewModel.foodOrderLD.observe(this){status->
-                if(status == "OK"){
-                    Toast.makeText(activity, "Place order successfull!", Toast.LENGTH_SHORT).show()
-                    findNavController().popBackStack()
+            var order_address = dataBinding.txtAlamat.text.toString()
+            var behalf = dataBinding.txtNamaPembeli.text.toString()
+
+            if(order_address == "" || behalf == ""){
+                Toast.makeText(activity, "Order address and recipient must be filled", Toast.LENGTH_SHORT).show()
+            } else {
+                var foodPrice = dataBinding.txtFoodPriceDetail.text.toString().toInt() * amount
+                if(currentBalance < foodPrice){
+                    Toast.makeText(activity, "Insufficent balance. Please top up", Toast.LENGTH_SHORT).show()
+                } else {
+                    userVM.reduceBalance(user_id, foodPrice)
+                    viewModel.orderFood(food_id, user_id.toString(), amount.toString(), behalf, order_address)
+                    viewModel.foodOrderLD.observe(this){status->
+                        if(status == "OK"){
+                            Toast.makeText(activity, "Place order successfull!", Toast.LENGTH_SHORT).show()
+                            findNavController().popBackStack()
+                        }
+                    }
                 }
             }
         }
