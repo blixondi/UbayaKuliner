@@ -11,7 +11,6 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.shem.ubayafood.model.Detail
 import com.shem.ubayafood.model.Food
 import com.shem.ubayafood.model.User
 import com.shem.ubayafood.util.buildDB
@@ -32,7 +31,6 @@ class FoodViewModel(application: Application): AndroidViewModel(application), Co
     val foodOrderLD = MutableLiveData<String>()
     val favoriteLD = MutableLiveData<Int>()
 
-    val detailLD = MutableLiveData<Detail>()
 
     val TAG = "tag"
     private var queue: RequestQueue? = null
@@ -66,20 +64,6 @@ class FoodViewModel(application: Application): AndroidViewModel(application), Co
         launch{
             val db = buildDB(getApplication())
             favoriteLD.postValue(db.favouriteDao().checkFavorite(food_id))
-        }
-    }
-
-    fun insertDetail(food_id: Int, address: String, recipient: String){
-        launch {
-            val db = buildDB(getApplication())
-            db.detailDao().insert(Detail(food_id, address, recipient))
-        }
-    }
-
-    fun getDetails(food_id: Int){
-        launch {
-            val db = buildDB(getApplication())
-            detailLD.postValue(db.detailDao().getDetail(food_id))
         }
     }
 

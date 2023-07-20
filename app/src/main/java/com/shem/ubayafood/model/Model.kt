@@ -57,16 +57,16 @@ data class Food(
     var is_favourite: Int
 )
 
-@Entity("details")
-data class Detail(
-    @ColumnInfo("id")
-    @PrimaryKey(autoGenerate = false)
-    var food_id:Int,
-    @ColumnInfo("address")
-    var food_address:String,
-    @ColumnInfo("recipient")
-    var food_recipient:String
-)
+//@Entity("details")
+//data class Detail(
+//    @ColumnInfo("id")
+//    @PrimaryKey(autoGenerate = false)
+//    var food_id:Int,
+//    @ColumnInfo("address")
+//    var food_address:String,
+//    @ColumnInfo("recipient")
+//    var food_recipient:String
+//)
 
 data class Order(
     var order_id:String,

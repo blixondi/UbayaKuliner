@@ -11,7 +11,6 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.shem.ubayafood.R
 import com.shem.ubayafood.model.UKDatabase
-//import com.shem.ubayafood.model.UKDatabase
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.lang.Exception
@@ -55,11 +54,5 @@ fun buildDB(context: Context): UKDatabase {
 val MIGRATION_1_2 = object : Migration(1,2){
     override fun migrate(database: SupportSQLiteDatabase) {
         database.execSQL("alter table foods add column user_id integer not null")
-    }
-}
-
-val MIGRATION_2_3 = object : Migration(2,3){
-    override fun migrate(database: SupportSQLiteDatabase) {
-        database.execSQL("create table if not exists `Detail` (`food_id` INTEGER, PRIMARY KEY(`food_id`))")
     }
 }
