@@ -8,7 +8,7 @@ import androidx.room.Query
 
 @Dao
 interface FavouriteDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg food:Food)
 
     @Query("SELECT * FROM foods WHERE is_favourite = 1")

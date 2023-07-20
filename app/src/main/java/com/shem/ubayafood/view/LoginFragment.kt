@@ -58,7 +58,7 @@ class LoginFragment : Fragment() {
             }
             var userStatus = userVM.login(txtUsername, txtPassword)
             userVM.userLD.observe(this) { user ->
-                Log.e("e", user.toString())
+//                Log.e("e", user.toString())
                 userVM.addUser(user)
                 if (user.username != null && user.username != ""){
                     val edit = sharedPreferences.edit()
