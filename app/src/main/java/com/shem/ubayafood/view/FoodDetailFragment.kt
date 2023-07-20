@@ -50,13 +50,20 @@ class FoodDetailFragment : Fragment() {
         viewModel.checkFavorite(food_id.toInt())
         viewModel.favoriteLD.observe(viewLifecycleOwner, Observer {
             is_favorite = it
-            Log.e("testfav",is_favorite.toString())
         })
+
+
+
         viewModel.getFoodDetail(food_id)
 
         viewModel.foodDetailLD.observe(viewLifecycleOwner, Observer {
             dataBinding.food = it
         });
+
+        if(is_favorite == 1){
+            dataBinding.btnDetailFav.setImageResource(R.drawable.baseline_star_24)
+            dataBinding.btnDetailFav.tag = "unfav"
+        }
 
         dataBinding.txtOrderAmount.setText(amount.toString())
 
