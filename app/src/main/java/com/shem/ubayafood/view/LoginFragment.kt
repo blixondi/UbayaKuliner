@@ -80,12 +80,10 @@ class LoginFragment : Fragment() {
                             val edit = sharedPreferences?.edit()
                             edit?.putInt("user_id", user.user_id)
                             edit?.apply()
-
                             val action = LoginFragmentDirections.actionHomeFragment()
                             Navigation.findNavController(requireView()).navigate(action)
                         }
                     }
-                Log.e("", "------------------------------")
             } else {
                 Toast.makeText(activity, "Invalid username/password", Toast.LENGTH_SHORT).show()
             }

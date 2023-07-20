@@ -15,6 +15,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.shem.ubayafood.R
 import com.shem.ubayafood.databinding.FragmentFoodDetailBinding
+import com.shem.ubayafood.model.Detail
 import com.shem.ubayafood.viewmodel.FoodViewModel
 
 class FoodDetailFragment : Fragment() {
@@ -54,6 +55,11 @@ class FoodDetailFragment : Fragment() {
             }
         })
         viewModel.getFoodDetail(food_id)
+        viewModel.getDetails(food_id.toInt())
+
+        viewModel.detailLD.observe(viewLifecycleOwner) { detail ->
+            dataBinding.detail = detail
+        }
 
         viewModel.foodDetailLD.observe(viewLifecycleOwner, Observer {
             dataBinding.food = it
@@ -92,6 +98,7 @@ class FoodDetailFragment : Fragment() {
         dataBinding.btnOrder.setOnClickListener {
             val order_address = dataBinding.txtAlamat.text.toString()
             val behalf = dataBinding.txtNamaPembeli.text.toString()
+            viewModel.addDetails(Detail(food_id.toInt(), order_address, behalf))
             viewModel.orderFood(food_id, user_id.toString(), amount.toString(), behalf, order_address)
             viewModel.foodOrderLD.observe(this){status->
                 if(status == "OK"){
