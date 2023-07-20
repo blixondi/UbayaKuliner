@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
@@ -16,11 +17,13 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.shem.ubayafood.R
+import com.shem.ubayafood.databinding.FragmentHistoryBinding
+import com.shem.ubayafood.databinding.FragmentHomeBinding
 import com.shem.ubayafood.viewmodel.FoodViewModel
 
 
 class HomeFragment : Fragment() {
-
+    private lateinit var dataBinding: FragmentHomeBinding
     private lateinit var viewModel: FoodViewModel
     private var foodListAdapter = FoodListAdapter(arrayListOf())
 
@@ -31,7 +34,7 @@ class HomeFragment : Fragment() {
         })
 
         viewModel.foodErrorLD.observe(viewLifecycleOwner, Observer{
-            val txtErrorFood = view?.findViewById<TextView>(R.id.txtErrorFood)
+            val txtErrorFood = dataBinding.txtErrorFood
             if(it == true){
                 txtErrorFood?.visibility = View.VISIBLE
             } else{
@@ -40,8 +43,8 @@ class HomeFragment : Fragment() {
         })
 
         viewModel.loadingLD.observe(viewLifecycleOwner, Observer{
-            val recViewFood = view?.findViewById<RecyclerView>(R.id.recViewFood)
-            val progressLoadFood = view?.findViewById<ProgressBar>(R.id.progressLoadFood)
+            val recViewFood = dataBinding.recViewFood
+            val progressLoadFood = dataBinding.progressLoadFood
             if(it == true){
                 recViewFood?.visibility = View.GONE
                 progressLoadFood?.visibility = View.VISIBLE
@@ -60,13 +63,13 @@ class HomeFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(FoodViewModel::class.java)
         viewModel.getFood()
-        val recViewFood = view.findViewById<RecyclerView>(R.id.recViewFood)
+        val recViewFood = dataBinding.recViewFood
         recViewFood.layoutManager = LinearLayoutManager(context)
         recViewFood.adapter = foodListAdapter
 
-        val refreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.refreshLayout)
-        val txtErrorFood = view.findViewById<TextView>(R.id.txtErrorFood)
-        val progressLoadFood = view.findViewById<ProgressBar>(R.id.progressLoadFood)
+        val refreshLayout = dataBinding.refreshLayout
+        val txtErrorFood = dataBinding.txtErrorFood
+        val progressLoadFood = dataBinding.progressLoadFood
         refreshLayout.setOnRefreshListener {
             recViewFood.visibility = View.GONE
             txtErrorFood.visibility = View.GONE
@@ -83,8 +86,9 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        dataBinding = DataBindingUtil.inflate<FragmentHomeBinding>(
+            inflater,R.layout.fragment_home,container,false
+        )
+        return dataBinding.root
     }
 }

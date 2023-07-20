@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textfield.TextInputEditText
 import com.shem.ubayafood.R
@@ -15,15 +16,20 @@ import com.shem.ubayafood.viewmodel.UserViewModel
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.findNavController
+import com.shem.ubayafood.databinding.FragmentFavoriteBinding
+import com.shem.ubayafood.databinding.FragmentRegisterBinding
 
 class RegisterFragment : Fragment() {
     private lateinit var userVM: UserViewModel
+    private lateinit var dataBinding: FragmentRegisterBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_register, container, false)
+        dataBinding = DataBindingUtil.inflate<FragmentRegisterBinding>(
+            inflater,R.layout.fragment_register,container,false
+        )
+        return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,11 +37,11 @@ class RegisterFragment : Fragment() {
         val btnCreateAccount = view.findViewById<Button>(R.id.btnCreateAccount)
         userVM = ViewModelProvider(this)[UserViewModel::class.java]
         btnCreateAccount.setOnClickListener {
-            val txtNewUsername = view.findViewById<TextInputEditText>(R.id.txtNewUsername)?.text.toString()
-            val txtNewFirstName = view.findViewById<TextInputEditText>(R.id.txtNewFirstName)?.text.toString()
-            val txtNewLastName = view.findViewById<TextInputEditText>(R.id.txtNewLastName)?.text.toString()
-            val txtNewPassword = view.findViewById<TextInputEditText>(R.id.txtNewPassword)?.text.toString()
-            val txtNewConfirmPassword = view.findViewById<TextInputEditText>(R.id.txtConfirmNewPassword)?.text.toString()
+            val txtNewUsername = dataBinding.txtNewUsername?.text.toString()
+            val txtNewFirstName = dataBinding.txtNewFirstName?.text.toString()
+            val txtNewLastName = dataBinding.txtNewLastName?.text.toString()
+            val txtNewPassword = dataBinding.txtNewPassword?.text.toString()
+            val txtNewConfirmPassword = dataBinding.txtConfirmNewPassword?.text.toString()
             if (
                 txtNewUsername == "" ||
                 txtNewFirstName == "" ||

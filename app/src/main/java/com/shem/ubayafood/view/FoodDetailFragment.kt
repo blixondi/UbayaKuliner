@@ -107,23 +107,8 @@ class FoodDetailFragment : Fragment() {
         }
 
         dataBinding.btnOrder.setOnClickListener {
-            var order_address = dataBinding.txtAlamat.text.toString()
-            var behalf = dataBinding.txtNamaPembeli.text.toString()
-
-            viewModel.orderFood(
-                food_id,
-                user_id.toString(),
-                amount.toString(),
-                behalf,
-                order_address
-            )
-            viewModel.foodOrderLD.observe(this) { status ->
-                if (status == "OK") {
-                    Toast.makeText(activity, "Place order successfull!", Toast.LENGTH_SHORT).show()
-                    findNavController().popBackStack()
                     var order_address = dataBinding.txtAlamat.text.toString()
                     var behalf = dataBinding.txtNamaPembeli.text.toString()
-
                     if (order_address == "" || behalf == "") {
                         Toast.makeText(
                             activity,
@@ -167,8 +152,8 @@ class FoodDetailFragment : Fragment() {
                             }
                         }
                     }
-                }
-            }
+
+
         }
     }
 }
